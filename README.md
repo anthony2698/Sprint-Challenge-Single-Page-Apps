@@ -27,7 +27,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
-> Answer:
+> Answer: With client-side routing we can maintain state to tell a browser what to display when a reasource is requested. The page subsequently won't refresh since we are loading everything in the beggining, and using components as we go.
 
 ## Project Set Up
 
