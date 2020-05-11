@@ -24,9 +24,9 @@ export default function WelcomePage() {
         <Link to="/characters">
           <button>Click me to see Characters!</button>
         </Link>
-        <Link to="/search">
+        {/* <Link to="/search">
           <button>Click me to search!</button>
-        </Link>
+        </Link> */}
         </StyledDiv>
       </header>
     </section>

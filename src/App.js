@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CharecterList from "./components/CharacterList";
 import WelcomePage from "./components/WelcomePage";
-import SearchForm from "./components/SearchForm";
+
 
 export default function App() {
 
@@ -18,9 +18,9 @@ export default function App() {
         <Header />
         <CharecterList />
       </Route>
-      <Route path="/search">
+      {/* <Route path="/search">
         <SearchForm />
-      </Route>
+      </Route> */}
     </main>
   );
 }

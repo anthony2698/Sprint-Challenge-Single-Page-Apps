@@ -1,56 +1,29 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import CharacterCard from "./CharacterCard"; 
+import React, { useState } from "react";
 
-export default function SearchForm() {
+export default function SearchForm({ setQuery, setQueryType }) {
+  const [currentSearch, setCurrentSearch] = useState('');
 
-const [data, setData] = useState([]);
-const [query, setQuery] = useState("");
+  const handleSubmit = e => {
+    e.preventDefault();
+    setQuery(currentSearch);
+  }
 
-useEffect(() => {
-  axios
-    .get("https://rickandmortyapi.com/api/character/")
-    .then((response) => {
-      const characters = response.data.results.filter(character =>
-        character.name.toLowerCase().includes(query.toLowerCase())
-      );
-      setData(characters);
-    });
-}, [query]);
-
-const handleInputChange = event => {
-  setQuery(event.target.value);
-};
-
-const StyledDiv = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-flex-wrap: wrap;
-align-content: center;
-`; 
   return (
     <section className="search-form">
-      <form className="search">
-        <input
-          className="input"
-          type="text"
-          onChange={handleInputChange}
-          value={query}
-          name="name"
-          tabIndex="0"
-          placeholder="search by name"
-          autoComplete="off"
-        />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="query-type">
+          Search By:
+          <select name="query-type" id="query-type" onChange={e => setQueryType(e.target.selectedOptions[0].value)}>
+            <option value="name">Name</option>
+            <option value="status">Status</option>
+            <option value="species">Species</option>
+            <option value="type">Type</option>
+            <option value="gender">Gender</option>
+          </select>
+        </label>
+        <input type="text" onChange={e => setCurrentSearch(e.target.value.toLowerCase())} />
+        <button type="submit">Submit</button>
       </form>
-      <StyledDiv className="character-list">
-      {data.map((character) => {
-        return(
-        <CharacterCard key={character.id} character={character}/>
-        );
-      })}
-    </StyledDiv>
     </section>
   );
 }
